@@ -1,0 +1,53 @@
+name: Testing
+
+on:
+  push:
+    branches:
+      - master
+
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    services:
+      mysql:
+        image: mysql:latest
+        ports:
+          - 3306:3306
+        env:
+          MYSQL_ROOT_PASSWORD: root
+          MYSQL_DATABASE: svideo_db
+          MYSQL_USER: svideo_db_user
+          MYSQL_PASSWORD: svideo_db_pass
+        options: >-
+          --health-cmd="mysqladmin ping -h localhost"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=5
+    env:
+      MYSQL_HOST: mysql
+      MYSQL_PORT: 3306
+      MYSQL_DATABASE: svideo_db
+      MYSQL_USER: svideo_db_user
+      MYSQL_PASSWORD: svideo_db_pass
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 23.8.0
+
+      - name: Install dependencies
+        run: |
+          npm install
+
+      - name: Wait for MySQL to be ready
+        run: |
+          sleep 20  # Wait for MySQL to be fully ready
+
+      - name: Initialize database with init.sql
+        run: |
+          mysql -h 127.0.0.1 -u svideo_db_user -psvideo_db_pass svideo_db < init.sql
+
+      - name: Run tests
+        run: |
+          npm run test 
