@@ -32,7 +32,7 @@ export default function VideoReelsViewer({
     <div className="relative w-full h-screen bg-black flex items-center justify-center">
       <div className="relative w-[360px] h-[640px] bg-black rounded-xl overflow-hidden shadow-xl">
         <ReactPlayer
-          url={`data:${video.video_mime};base64,${video.video_data}`}
+          url={video.video_url}
           playing={isPlaying}
           muted={isMuted}
           controls={false}

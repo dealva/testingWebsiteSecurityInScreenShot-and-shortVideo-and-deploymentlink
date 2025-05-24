@@ -11,10 +11,7 @@ CREATE TABLE IF NOT EXISTS videos (
   user_id VARCHAR(36) NOT NULL,
   title VARCHAR(255),
   description TEXT,
-  video_data MEDIUMBLOB NOT NULL,
-  video_mime VARCHAR(50) NOT NULL,
-  thumbnail_url TEXT,
-  duration INT,
+  video_url TEXT NOT NULL,        -- NEW: Store Cloudinary URL here
   created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
   FOREIGN KEY (user_id) REFERENCES users(id)
 );

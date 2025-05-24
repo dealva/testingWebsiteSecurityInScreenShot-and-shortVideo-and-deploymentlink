@@ -16,7 +16,7 @@ export async function GET(req) {
     let values = [];
     let baseQuery = `
       SELECT 
-        v.id, v.title, v.description, v.video_data, v.video_mime,
+        v.id, v.title, v.description, v.video_url,
         u.username AS uploader_name,
         (SELECT COUNT(*) FROM likes l WHERE l.video_id = v.id) AS like_count,
         (SELECT COUNT(*) FROM comments c WHERE c.video_id = v.id) AS comment_count,
@@ -64,8 +64,7 @@ export async function GET(req) {
       id: video.id,
       title: video.title,
       description: video.description,
-      video_data: video.video_data.toString('base64'),
-      video_mime: video.video_mime,
+      video_url: video.video_url,
       uploader_name: video.uploader_name,
       like_count: video.like_count,
       comment_count: video.comment_count,
@@ -85,8 +84,8 @@ export async function GET(req) {
           username: userRow.username,
           email: userRow.email,
           profile_photo: userRow.profile_photo
-                ? `data:image/jpeg;base64,${userRow.profile_photo.toString('base64')}`
-                : null,
+            ? `data:image/jpeg;base64,${userRow.profile_photo.toString('base64')}`
+            : null,
         };
       }
     }
