@@ -49,7 +49,6 @@ VALUES (
   NOW()
 );
 
-SET @admin_user_id = LAST_INSERT_ID();
 
 -- OPTIONAL: insert a placeholder video owned by admin (can be skipped)
 INSERT INTO videos (
@@ -57,7 +56,7 @@ INSERT INTO videos (
 )
 VALUES (
   'video-001',
-  @admin_user_id,
+  'admin',
   'Placeholder Video',
   'This is a placeholder video for testing.',
   '',                   
