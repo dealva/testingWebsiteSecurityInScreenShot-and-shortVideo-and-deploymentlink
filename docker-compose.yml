@@ -1,4 +1,10 @@
 services:
+  app:
+    build:
+      context: .
+      dockerfile: ./docker/app/DockerFile
+    ports:
+      - 3000:3000
   db:
     image: mysql:8.0
     container_name: sv-video-mysql
