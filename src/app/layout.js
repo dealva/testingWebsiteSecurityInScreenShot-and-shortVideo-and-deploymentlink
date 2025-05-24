@@ -1,6 +1,8 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-
+import ClientProvider from "@/contexts/recaptcha/client";
+import { ToastContainer } from "react-toastify";
+import ClientLayout from "./client_layout";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -22,7 +24,13 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        <ClientLayout>
+          <ClientProvider>
+            {children}
+          </ClientProvider>
+        </ClientLayout>
+       
+        <ToastContainer position="top-center" />
       </body>
     </html>
   );

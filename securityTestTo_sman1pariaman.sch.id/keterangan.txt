@@ -1,0 +1,16 @@
+TESTING preview : 
+
+dilihat dari securityCheck1.png
+hanya ada header Strict-Transport-securityCheck1
+
+dilihat dari securityCheck2.png sudah ada query injection protectionnya
+
+dari securityCheck3.png , sepertinya tidak ada proteksi dari bot yang kuat karena tidak ada:
+CAPTCHA	
+Rate limiting (429)	
+WAF block (403/468)	
+JavaScript fingerprint	
+Cookie/UA validation
+
+CSRF test tidak diperlukan karena website hanya bersifat website informasi, jadi tidak ada login /register 
+hanya 1 search input saja
