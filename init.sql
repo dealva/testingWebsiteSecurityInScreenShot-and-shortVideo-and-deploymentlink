@@ -50,18 +50,18 @@ VALUES (
 );
 
 
--- OPTIONAL: insert a placeholder video owned by admin (can be skipped)
-INSERT INTO videos (
-  id, user_id, title, description, video_data, video_mime, thumbnail_url, duration, created_at
-)
-VALUES (
-  'video-001',
-  'admin',
-  'Placeholder Video',
-  'This is a placeholder video for testing.',
-  '',                   
-  'video/mp4',
-  NULL,
-  0,
-  NOW()
-);
+-- -- OPTIONAL: insert a placeholder video owned by admin (can be skipped)
+-- INSERT INTO videos (
+--   id, user_id, title, description, video_data, video_mime, thumbnail_url, duration, created_at
+-- )
+-- VALUES (
+--   'video-001',
+--   'admin',
+--   'Placeholder Video',
+--   'This is a placeholder video for testing.',
+--   '',                   
+--   'video/mp4',
+--   NULL,
+--   0,
+--   NOW()
+-- );
